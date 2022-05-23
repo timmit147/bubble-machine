@@ -1,28 +1,78 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Page Title</title>
+<title>Bubble-machine</title>
+<script src="https://d3js.org/d3.v6.min.js"></script>
+
 </head>
 <body>
 
 <h1>Bubble-machine</h1>
 
-<script>
+<h2>List of notes</h2>
+<ul id="listNotes"></ul>
 
-    console.log("test");
+<h2>List of Links</h2>
+<ul id="listDocuments"></ul>
 
-function httpGet(){
-    var xmlHttp = new XMLHttpRequest();
-    xmlHttp.open( "GET", "https://bubble-machine-api-dummy.herokuapp.com/rest/session/2", false ); // false for synchronous request
-    xmlHttp.send( null );
-    return xmlHttp.responseText;
-    console.log(xmlHttp.responseText);
-}
+<button id="nextStep">Next step</button>
 
-httpGet();
 
-</script>
+
+<!-- <canvas id="myCanvas" width="400" height="400" viewBox="-1 -1 1 1">
+    <rect x="0" y="0" width="100%" height="100%"/>
+    <circle cx="50%" cy="50%" r="4" fill="red"/>
+
+
+</canvas> -->
+
+<svg id="mysvg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 1600 800" preserveAspectRatio="xMidYMid meet"></svg>
+
 
 
 </body>
+<script src="js/script.js"></script>
+
 </html>
+
+<style>
+canvas#myCanvas {
+    border: 1px solid;
+}
+
+*, *:before, *:after {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+html {
+  height: 100%;
+}
+
+body {
+  min-height: 100%;
+  font-family: Lato, sans-serif;
+  font-size: 100%;
+  padding: 0;
+  margin: 10px;
+  color: #444;
+  background-color: #fff;
+  overflow: hidden;
+}
+
+svg {
+  background: radial-gradient(ellipse at center, #fefefe 0%, #cbeeff 100%);
+}
+
+circle {
+  stroke-width: 5;
+  stroke: #f00;
+  fill: #ff0;
+}
+
+circle:hover {
+  stroke: #090;
+  fill: #fff;
+}
+</style>
