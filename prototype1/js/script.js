@@ -5,12 +5,12 @@ function httpPost(method,post){
 }
 
 document.querySelector("#nextStep").addEventListener('click', function(e) {
-    httpPost("POST","https://bubble-machine-api-dummy.herokuapp.com/rest/session/2/step");
+    httpPost("POST","https://bubble-machine-api-dummy.herokuapp.com/rest/session/1/step");
     location.reload();
 }, false);
 
 document.querySelector("#resetSimulation").addEventListener('click', function(e) {
-    httpPost("PUT","https://bubble-machine-api-dummy.herokuapp.com/rest/session/2/reset");
+    httpPost("PUT","https://bubble-machine-api-dummy.herokuapp.com/rest/session/1/reset");
     location.reload();
 }, false);
 
@@ -20,7 +20,7 @@ var
 
 function httpGet(){
     var xmlHttp = new XMLHttpRequest();
-    xmlHttp.open( "GET", "https://bubble-machine-api-dummy.herokuapp.com/rest/session/2", false ); // false for synchronous request
+    xmlHttp.open( "GET", "https://bubble-machine-api-dummy.herokuapp.com/rest/session/1", false ); // false for synchronous request
     xmlHttp.send( null );
     return xmlHttp.responseText;
 }

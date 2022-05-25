@@ -1,20 +1,35 @@
-function httpPost(method,post){
+// Send a http post with a method and url
+function httpPost(method,url){
     var xmlHttp = new XMLHttpRequest();
     xmlHttp.open( method, post, false ); // false for synchronous request
     xmlHttp.send( null );
 }
 
+function click(item){
+    document.querySelector(item).addEventListener('click', function(e) {
+        httpPost("POST","https://bubble-machine-api-dummy.herokuapp.com/rest/session/1/step");
+    location.reload();
+    }, false);
+}
+
+
+
+// When clicking on nextstep button change step next simulation
+click("#nextStep")
+
+
 document.querySelector("#nextStep").addEventListener('click', function(e) {
-    httpPost("POST","https://bubble-machine-api-dummy.herokuapp.com/rest/session/2/step");
-    location.reload();
+
 }, false);
 
+// When clicking on resetSimulation button reset simulation 
 document.querySelector("#resetSimulation").addEventListener('click', function(e) {
-    httpPost("PUT","https://bubble-machine-api-dummy.herokuapp.com/rest/session/2/reset");
+    httpPost("PUT","https://bubble-machine-api-dummy.herokuapp.com/rest/session/1/reset");
     location.reload();
 }, false);
 
 
+// When clicking on disablefriends button add class to hide friend bubbles 
 document.querySelector("#disablefriends").addEventListener('click', function(e) {
     var checkboxes = document.querySelectorAll('.person');
     for (var i = 0, len = checkboxes.length; i < len; i++) {
@@ -22,6 +37,7 @@ document.querySelector("#disablefriends").addEventListener('click', function(e) 
     }
 }, false);
 
+// When clicking on disableItems button add class to hide item bubbles 
 document.querySelector("#disableItems").addEventListener('click', function(e) {
     var checkboxes = document.querySelectorAll('.item');
     for (var i = 0, len = checkboxes.length; i < len; i++) {
@@ -36,7 +52,7 @@ var
 
 function httpGet(){
     var xmlHttp = new XMLHttpRequest();
-    xmlHttp.open( "GET", "https://bubble-machine-api-dummy.herokuapp.com/rest/session/2", false ); // false for synchronous request
+    xmlHttp.open( "GET", "https://bubble-machine-api-dummy.herokuapp.com/rest/session/1", false ); // false for synchronous request
     xmlHttp.send( null );
     return xmlHttp.responseText;
 }
@@ -101,7 +117,7 @@ switch (session["links"][i]["label"]) {
         newLine.setAttribute('y2',`${document.querySelector(".person"+session["links"][i]["target"]).cy.baseVal.value}`);
         newLine.setAttribute("stroke", "#ffff007a")
         newLine.setAttribute("stroke-width", "0.6")
-        // svg.append(newLine);
+        svg.append(newLine);
         i++;
     break;
     case 'infolink':
